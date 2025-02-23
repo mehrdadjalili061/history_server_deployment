@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: history-api-server
+  labels:
+    app: history-api-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: history-api-server
+  template:
+    metadata:
+      labels:
+        app: history-api-server
+    spec:
+      imagePullSecrets:
+        - name: facegram-registery
+      containers:
+        - name: history-api-server
+          image: ""
+          ports:
+            - containerPort: 8080
+            - containerPort: 30014
+          env:
+            - name: NODE_ENV
+              value: "dev"   
+          envFrom:
+            - secretRef:
+                name: grpc-client-configs
+            - secretRef:
+                name: grpc-client-urls 
+            - secretRef:
+                name: sentry-credential
+            - secretRef:
+                name: mongodb-credential  
+            - secretRef:
+                name: aes-keys                                                  

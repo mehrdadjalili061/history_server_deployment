@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: history-api-service
+spec:
+  selector:
+    app: history-api-server
+  ports:
+    - name: http-api
+      protocol: TCP
+      port: 31505
+      targetPort: 8080
+      nodePort: 31505
+    - name: grpc-client-port
+      protocol: TCP
+      port: 30014
+      targetPort: 30014
+      nodePort: 30014     
+  type: NodePort
