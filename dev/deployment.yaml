@@ -18,7 +18,7 @@ spec:
         - name: facegram-registery
       containers:
         - name: history-api-server
-          image: ""
+          image: cr.fcgm.dev/facegram/history-service:00b338e8
           ports:
             - containerPort: 8080
             - containerPort: 30014
